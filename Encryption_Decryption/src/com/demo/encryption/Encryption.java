@@ -125,8 +125,12 @@ class Main {
         }
         return output;
     }
+        
     //32 = space
     // 126 = ~
+        
+    //This is the method to decrypt the string taking the text, the key and algorithm as arguments
+    //returns the decrypted message
     public static String Decrypt(String text, int key, String alg) {
         String output = new String();
         if (alg.equals("unicode")) {

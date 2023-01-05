@@ -15,6 +15,7 @@ class Main {
         boolean outPut = false;
         String path = "";
         String alg = "shift";
+            //this for loop changes the value of the argumenent taken depending on the user input
         for (int i = 0; i < args.length; i += 2) {
             if (args[i].equals("-mode")) {
                 mode = args[i + 1];
@@ -38,6 +39,8 @@ class Main {
                 alg = args[i + 1];
             }
         }
+            //This if statement switches between encoding or decoding depending on eariler input from user
+            //Note in retrospect a swtich statement might be a better solution
         if (mode.equals("enc")) {
             if (!outPut) {
                 System.out.println(Encrypt(text, key, alg));

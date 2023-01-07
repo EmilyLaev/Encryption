@@ -15,7 +15,8 @@ class Main {
         boolean outPut = false;
         String path = "";
         String alg = "shift";
-            //this for loop changes the value of the argumenent taken depending on the user input
+        
+        //this for loop changes the value of the argumenent taken depending on the user input
         for (int i = 0; i < args.length; i += 2) {
             if (args[i].equals("-mode")) {
                 mode = args[i + 1];
@@ -53,6 +54,7 @@ class Main {
                 }
             }
         } else if (mode.equals("dec")) {
+                //This option calls the decrypt method 
             if (!outPut) {
                 System.out.println(Decrypt(text, key, alg));
             } else if (outPut) {
@@ -68,6 +70,7 @@ class Main {
         }
     }
 
+    //This is a method to call a file and turn it to text the program can read
     public static String getText(File file) {
         String fileText = "";
         try (Scanner scan = new Scanner(file)) {
@@ -79,7 +82,11 @@ class Main {
         }
         return fileText;
     }
-
+  
+    // This method takes in a String called text, an int called key, and a String called alg
+    // and returns an encrypted version of the text input.
+    // Depending on if the values are below 127 or above 32 the encrpytion uses a shift cypher to make the
+    //encrpyted text, the shift is the value of the key
     public static String Encrypt(String text, int key, String alg) {
         String output = new String();
         if (alg.equals("unicode")) {
@@ -87,6 +94,7 @@ class Main {
                 int num = text.charAt(i);
                 if (num < 127 && num > 31) {
                     if (num + key < 127) {
+                        // Create a new char by casting the sum of the Unicode value and the key to a char
                         char newChar = (char) (num + key);
                         output = output + newChar;
                     } else if (num + key > 126) {
@@ -133,7 +141,8 @@ class Main {
     // 126 = ~
         
     //This is the method to decrypt the string taking the text, the key and algorithm as arguments
-    //returns the decrypted message
+    //returns the decrypted message using the reverse shift cypher
+    // the shift is dependent on the Unicode value of the characters (above 32 below 127) and the key
     public static String Decrypt(String text, int key, String alg) {
         String output = new String();
         if (alg.equals("unicode")) {

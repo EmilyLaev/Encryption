@@ -7,7 +7,7 @@ package com.demo.encryption;
         import java.util.Arrays;
 
 class Main {
-
+    //A list of the main use variables
     public static void main(String[] args) {
         String mode = "enc";
         int key = 0;
